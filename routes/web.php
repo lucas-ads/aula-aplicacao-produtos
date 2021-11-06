@@ -14,20 +14,11 @@ use App\Http\Controllers\AdminProdutoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AdminProdutoController::class, 'index'])
+    ->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
-
-Route::get(
-    '/produtos',
-    [AdminProdutoController::class, 'index']
-)->middleware(['auth'])->name('list-produtos');
+Route::get('/produtos',[AdminProdutoController::class, 'list'])
+    ->middleware(['auth','admin'])->name('list-produtos');
 
 
 require __DIR__.'/auth.php';

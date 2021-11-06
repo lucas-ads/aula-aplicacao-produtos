@@ -15,8 +15,11 @@ class AdminProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
+        return view('dashboard');
+    }
+
+    public function list(){
         $produtos = Produto::all();
 
         return view('list-produtos')->with([
