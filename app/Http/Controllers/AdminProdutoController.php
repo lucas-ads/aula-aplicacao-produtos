@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminProdutoController extends Controller
 {
@@ -34,7 +36,7 @@ class AdminProdutoController extends Controller
      */
     public function create()
     {
-        //
+        return view('form-produto');
     }
 
     /**
@@ -45,7 +47,25 @@ class AdminProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request);
+
+        Validator::make($request->all(), [
+            'nome' => 'required|max:255|unique:produtos',
+            'preco' => 'required|numeric|min:0.01',
+            'quantidade' => 'required|numeric|min:0',
+        ])->validate();
+
+        $produto = new Produto();
+        
+        $produto->nome = $request->nome;
+        $produto->preco = $request->preco;
+        $produto->quantidade = $request->quantidade;
+        $produto->created_by = Auth::Id();
+
+        $produto->save();
+
+        return redirect()->route('list-produtos');
     }
 
     /**

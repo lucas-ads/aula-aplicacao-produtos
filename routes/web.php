@@ -20,5 +20,10 @@ Route::get('/', [AdminProdutoController::class, 'index'])
 Route::get('/produtos',[AdminProdutoController::class, 'list'])
     ->middleware(['auth','admin'])->name('list-produtos');
 
+Route::get('/produtos/novo',[AdminProdutoController::class, 'create'])
+    ->middleware(['auth','admin'])->name('create-produto');
+
+Route::post('/produtos',[AdminProdutoController::class, 'store'])
+    ->middleware(['auth','admin'])->name('store-produto');
 
 require __DIR__.'/auth.php';

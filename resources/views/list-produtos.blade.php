@@ -33,6 +33,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a class="btn btn-primary float-right" href="{{ route('create-produto') }}">Cadastrar Produto</a>
         </div>
     </div>
 </x-app-layout>
