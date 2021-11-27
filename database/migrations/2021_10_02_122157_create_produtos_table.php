@@ -19,6 +19,7 @@ class CreateProdutosTable extends Migration
             $table->string('nome');
             $table->double('preco');
             $table->integer('quantidade');
+            $table->string('image_path');
 
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users');

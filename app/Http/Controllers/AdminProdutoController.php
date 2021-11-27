@@ -48,12 +48,11 @@ class AdminProdutoController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
-
         Validator::make($request->all(), [
             'nome' => 'required|max:255|unique:produtos',
             'preco' => 'required|numeric|min:0.01',
             'quantidade' => 'required|numeric|min:0',
+            'imagem' => 'required|mimes:jpg,png,bmp'
         ])->validate();
 
         $produto = new Produto();
@@ -62,6 +61,8 @@ class AdminProdutoController extends Controller
         $produto->preco = $request->preco;
         $produto->quantidade = $request->quantidade;
         $produto->created_by = Auth::Id();
+
+        $produto->image_path = $request->file('imagem')->store('public');
 
         $produto->save();
 

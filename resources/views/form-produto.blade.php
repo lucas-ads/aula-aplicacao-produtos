@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form action="{{ route('store-produto') }}" method="POST">
+            <form action="{{ route('store-produto') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class='form-group'>
                     <label for="nomeProduto">Descrição:</label>
@@ -22,6 +22,11 @@
                 <div class='form-group mt-4'>
                     <label for="quantidade">Quantidade:</label>
                     <input type="number" id="quantidade" name="quantidade" class="form-control" required>
+                </div>
+
+                <div class='form-group mt-4'>
+                    <label for="imagem">Imagem:</label>
+                    <input type="file" id="imagem" name="imagem" class="form-control" required>
                 </div>
 
                 <div class='form-group mt-4 text-center'>

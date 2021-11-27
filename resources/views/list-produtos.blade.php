@@ -10,6 +10,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Id</th>
                         <th>Nome</th>
                         <th>Preço</th>
@@ -22,13 +23,16 @@
                 <tbody>
                     @foreach($produtos as $produto)
                         <tr>
-                            <td>{{ $produto->id }}</td>
-                            <td>{{ $produto->nome }}</td>
-                            <td>{{ $produto->preco }}</td>
-                            <td>{{ $produto->quantidade }}</td>
-                            <td>{{ $produto->created_by }}</td>
-                            <td>{{ $produto->created_at }}</td>
-                            <td>{{ $produto->updated_at }}</td>
+                            <td>
+                                <img style="height: 80px" src="{{ Storage::url($produto->image_path) }}">
+                            </td>
+                            <td class="align-middle">{{ $produto->id }}</td>
+                            <td class="align-middle">{{ $produto->nome }}</td>
+                            <td class="align-middle">{{ $produto->preco }}</td>
+                            <td class="align-middle">{{ $produto->quantidade }}</td>
+                            <td class="align-middle">{{ $produto->created_by }}</td>
+                            <td class="align-middle">{{ $produto->created_at }}</td>
+                            <td class="align-middle">{{ $produto->updated_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>
